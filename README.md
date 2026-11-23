@@ -56,21 +56,79 @@ Convert the input image into grayscale format.
 Compare the results obtained from Global, Adaptive, and Otsu's thresholding methods.
 
 ## Program
+```
+import cv2
+import matplotlib.pyplot as plt
+```
+## Read the Image and convert to grayscale:
+```
+image=cv2.imread('pandas.jpg')
+gray_img=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+```
+## Original image:
+```
+plt.subplot(2,2,1)
+plt.imshow(cv2.cvtColor(image,cv2.COLOR_BGR2RGB))
+plt.title('Original Image')
+plt.axis('off')
+```
+## Use Global thresholding to segment the image:
+```
+_,global_thresholded = cv2.threshold(gray_img, 127, 255, cv2.THRESH_BINARY)
+```
+### Use Adaptive thresholding to segment the image:
+```
+adaptive_thresholded = cv2.adaptiveThreshold(gray_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+```
+### Use Otsu's method to segment the image:
+```
+_,otsu_thresholded = cv2.threshold(gray_img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+```
+### Global Thresholding:
+```
+plt.subplot(2, 2, 2)
+plt.imshow(global_thresholded, cmap='gray')
+plt.title("Global Thresholding")
+plt.axis('off')
+```
+### Adaptive Thresholding:
+```
+plt.subplot(2, 2, 3)
+plt.imshow(adaptive_thresholded, cmap='gray')
+plt.title("Adaptive Thresholding")
+plt.axis('off')
+```
+### Otsu's Method:
+```
+plt.subplot(2, 2, 4)
+plt.imshow(otsu_thresholded, cmap='gray')
+plt.title("Otsu's Method")
+plt.axis('off')
+```
+### Show the plot:
+```
+plt.tight_layout()
+plt.show()
+```
 
 ## Developed By
 
-**Name:** ____________________________
-
-**Register No:** ______________________
+## Name: Priyadharshini S
+## Register number: 212225230218
 
 ## Output
 
 ### Original Grayscale Image
 
+<img width="621" height="612" alt="image" src="https://github.com/user-attachments/assets/2344f127-5cc2-49fe-a958-8bb9d696a0f5" />
+
+
 - The grayscale version of the input image is displayed.
 - Serves as the input for thresholding operations.
 
 ### Global Thresholding
+
+<img width="557" height="602" alt="image" src="https://github.com/user-attachments/assets/be16c9d4-7df3-452b-a317-0c5154190751" />
 
 - Original image is displayed.
 - Thresholded image is displayed.
@@ -79,6 +137,8 @@ Compare the results obtained from Global, Adaptive, and Otsu's thresholding meth
 
 ### Adaptive Thresholding
 
+<img width="557" height="617" alt="image" src="https://github.com/user-attachments/assets/eab8ef04-4fa5-46c5-8b90-1092731326b9" />
+
 - Original image is displayed.
 - Adaptive Mean Thresholded image is displayed.
 - Adaptive Gaussian Thresholded image is displayed.
@@ -86,6 +146,8 @@ Compare the results obtained from Global, Adaptive, and Otsu's thresholding meth
 - Suitable for images with uneven illumination.
 
 ### Otsu's Thresholding
+
+<img width="532" height="586" alt="image" src="https://github.com/user-attachments/assets/2065e98c-9353-4e60-b48b-3ad6de1a6168" />
 
 - Original image is displayed.
 - Otsu segmented image is displayed.
